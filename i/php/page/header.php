@@ -1,3 +1,4 @@
+<!-- * Cross header -->
 <?php 
     echo '
         <header>

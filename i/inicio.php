@@ -8,7 +8,7 @@
     <meta name="title" content="Inicio">
 
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
 
     <title>Document</title>
 
@@ -18,7 +18,9 @@
 
 <body>
 
-    <?php include 'php/page/modal.php'; ?>
+    <!-- <php include 'php/page/modal.php'; ?> -->
+
+    <?php include 'php/page/info.php'; ?>
 
     <?php include 'php/page/header.php'; ?>
 
@@ -42,7 +44,7 @@
         <div class="videosection">
             <div class="row">
                 <h1>Videos destacados</h1>
-                <img src="res/icons/help-circle.svg" alt="" srcset="">
+                <img src="res/icons/help-circle.svg" onmousemove="showInfo(0)" onmouseleave="showInfo(-1)">
             </div>
 
             <div class="video-row">
@@ -64,7 +66,7 @@
         <div class="videosection">
             <div class="row">
             <h1>Videos más recientes</h1>
-                <img src="res/icons/help-circle.svg" alt="" srcset="">
+            <img src="res/icons/help-circle.svg" onmousemove="showInfo(1)" onmouseleave="showInfo(-1)">
             </div>
 
             <div class="video-row">
@@ -86,7 +88,7 @@
         <div class="videosection">
             <div class="row">
                 <h1>Sugerencias para tí</h1>
-                <img src="res/icons/help-circle.svg" alt="" srcset="">
+                <img src="res/icons/help-circle.svg" onmousemove="showInfo(2)" onmouseleave="showInfo(-1)">
             </div>
 
             <div class="video-row">
@@ -104,6 +106,8 @@
         </div>
 
     </main>
+
+    <?php include 'php/page/footer.php'; ?>
 
 </body>
 </html>
