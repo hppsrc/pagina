@@ -15,5 +15,8 @@
                 <p id="actions"> Acciones </p>
             </div>
         </header>
+        <nav id="nav">
+        <a href="registro.php">Acceder / Registrarse</a>
+        </nav>
     ';
 ?>

@@ -29,6 +29,7 @@ html {
             
             background-color: var(--main);
 
+            border: solid #000 1px;
             border-radius: 5px;
 
             transition: 0.5s opacity;
@@ -98,6 +99,31 @@ html {
                 justify-content: center;
 
             }
+
+            #actions {
+
+                &:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+
+            }
+
+        }
+
+        nav {
+            padding: 0px;
+            height: 0px;
+            
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            
+            background-color: var(--seco);
+
+            overflow: hidden;
+
+            transition: height 0.2s, padding 0.2s, font-size 0.2s;
 
         }
 
@@ -233,6 +259,92 @@ html {
 
                 }
     
+            }
+
+            &#registro {
+                display: flex;
+                flex-direction: column;
+    
+                form {
+                    display: flex;
+                    flex-direction: column;
+
+                    red {
+                        font-size: x-large;
+                        color: red;
+                    }
+
+                    div {
+                        display: flex;
+                        flex-direction: row;
+
+                        .row {
+
+                            padding: 0 1%;
+                            
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+    
+                            img {
+                                padding: 0 1%;
+                                
+                                width: 18px;
+                                height: 18px;
+    
+                                &:hover { cursor: pointer; }
+                            }
+    
+                        }
+
+                    }
+
+                    label, input, button {
+
+                        padding: 0 1%;
+                        
+                        font-size: x-large;
+                        
+                        border-radius: 0;
+                        border: none;
+                        
+                        &::placeholder {
+                            font-style: italic;
+                            font-size: medium;
+
+                            opacity: 0.5;
+
+                        }
+
+                        &:not(label, button) {
+
+                            flex-grow: 1;
+    
+                            border-bottom: solid #000 1px;
+                            
+                            outline-width: 0px;
+    
+                            &:focus { border-color: var(--main); }
+
+                        }
+
+                        &:not(label, input ) {
+                            border: solid #000 1px;
+
+                            transition: 0.1s background-color;
+
+                            &:hover {
+                                background-color: var(--seco);
+                                cursor: pointer;
+
+                            }
+
+                        }
+
+                    }
+    
+                }
+
             }
 
         }
