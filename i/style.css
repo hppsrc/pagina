@@ -83,7 +83,7 @@ html {
 
             background-color: var(--main);
 
-            div {
+            a, div {
                 display: flex;
                 flex-direction: row;
 
@@ -264,85 +264,109 @@ html {
             &#registro {
                 display: flex;
                 flex-direction: column;
-    
-                form {
+                justify-content: center;
+
+                div form *, div form &#sec2 * {
+                    margin-top: 5px !important;
+                }
+
+                div {
                     display: flex;
-                    flex-direction: column;
-
-                    red {
-                        font-size: x-large;
-                        color: red;
-                    }
-
-                    div {
+                    flex-direction: row;
+    
+                    form {
                         display: flex;
-                        flex-direction: row;
-
-                        .row {
-
-                            padding: 0 1%;
-                            
+                        flex-direction: column;
+                        width: 50%;
+    
+                        red {
+                            font-size: x-large;
+                            color: red;
+                        }
+    
+                        div {
                             display: flex;
                             flex-direction: row;
-                            align-items: center;
+                            justify-content: space-between;
     
-                            img {
-                                padding: 0 1%;
+                            .row {
+                                padding-right: 0 1%;
                                 
-                                width: 18px;
-                                height: 18px;
-    
-                                &:hover { cursor: pointer; }
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+        
+                                img {
+                                    padding-right: 0 1%;
+                                    
+                                    width: 18px;
+                                    height: 18px;
+        
+                                    &:hover { cursor: pointer; }
+                                }
+        
                             }
     
                         }
-
-                    }
-
-                    label, input, button {
-
-                        padding: 0 1%;
-                        
-                        font-size: x-large;
-                        
-                        border-radius: 0;
-                        border: none;
-                        
-                        &::placeholder {
-                            font-style: italic;
-                            font-size: medium;
-
-                            opacity: 0.5;
-
-                        }
-
-                        &:not(label, button) {
-
-                            flex-grow: 1;
     
-                            border-bottom: solid #000 1px;
+                        label, input, button {
+    
+                            padding-right: 0 1%;
                             
-                            outline-width: 0px;
+                            font-size: x-large;
+                            
+                            border-radius: 0;
+                            border: none;
+                            
+                            &::placeholder {
+                                font-style: italic;
+                                font-size: medium;
     
-                            &:focus { border-color: var(--main); }
-
+                                opacity: 0.5;
+    
+                            }
+    
+                            &:not(label, button) {
+    
+                                flex-basis: 50%;
+        
+                                border-bottom: solid #000 1px;
+                                
+                                outline-width: 0px;
+        
+                                &:focus { border-color: var(--main); }
+    
+                            }
+    
+                            &:not(label, input ) {
+                                border: solid #000 1px;
+    
+                                transition: 0.1s background-color;
+    
+                                &:hover {
+                                    background-color: var(--seco);
+                                    cursor: pointer;
+    
+                                }
+    
+                            }
+    
                         }
 
-                        &:not(label, input ) {
-                            border: solid #000 1px;
-
-                            transition: 0.1s background-color;
-
-                            &:hover {
-                                background-color: var(--seco);
-                                cursor: pointer;
-
+                        &#sec2 {
+                            text-align: center;
+                            justify-content: center;
+                            
+                            *{
+                                padding-left: 5px;
+                                width: 50%;
+                                margin: 0 25%;
                             }
 
                         }
-
+        
                     }
-    
+
                 }
 
             }

@@ -48,7 +48,7 @@ function showInfo(value) {
             temp = "Videos sugeridos.";
             break;
         case 3:
-            temp = "Si no estas registrado esta sera tu contraseña.";
+            temp = "Si no estas registrado esta sera tu contraseña. Minimo 8 caracteres.";
             break;
         default:
             temp = "";

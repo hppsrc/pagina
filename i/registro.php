@@ -28,46 +28,57 @@
 
         <h1>Registrate o accede a la plataforma</h1>
 
-        <br>
+        <div>
 
-        <form>
-            
-            <div>
-                <label> Codigo carnet estudiantil <red>*</red> </label>
-                <input type="number" id="carnet">
-            </div>
-
-            <div>
-                <label> Correo institucional <red>*</red> </label>
-                <input type="email" id="carnet">
-            </div>
-
-            <div>
-
-                <div class="row">
-                    <label> Contraseña </label>
-                    <red>*</red>
-                    <img src="res/icons/help-circle.svg" onmousemove="showInfo(3)" onmouseleave="showInfo(-1)">
+            <form>
+                
+                <div>
+                    <label> Codigo carnet estudiantil <red>*</red> </label>
+                    <input type="number" id="carnet">
                 </div>
 
-                <input type="password" id="carnet">
+                <div>
+                    <label> Correo institucional <red>*</red> </label>
+                    <input type="email" id="carnet">
+                </div>
 
-            </div>
+                <div>
 
-            <p style="color: darkred;">Debe tener minimo 8 caracteres.</p>
-            
-        </form>
+                    <div class="row">
+                        <label> Contraseña </label>
+                        <red>*</red>
+                        <img src="res/icons/help-circle.svg" onmousemove="showInfo(3)" onmouseleave="showInfo(-1)">
+                    </div>
 
+                    <input type="password" id="carnet">
+
+                </div>
+
+            </form>
+
+            <form id="sec2" action="">
+
+                <button>Verificar información</button>
+                <button>Registrarme</button>
+                
+                <label for="">¿Ya estás registrado?</label>
+                <button>Inicia sesión</button>
+
+            </form>
+
+        </div>
+
+        <p style="color: darkcyan;">Para registrate, rellena la información y presiona en verificar.</p>
         <p style="color: red;"> * Obligatorio </p>
 
         <br>
-        
+
         <a href=""> No recuerdo mi contraseña </a>
         <a href=""> Mi informacion es correcta y no puedo registrarme </a>
         <a href=""> Alguien se registro con mis datos </a>
         <a href=""> Tengo otro problema </a>
         
-        
+        <br><br><br>
         
         
 
