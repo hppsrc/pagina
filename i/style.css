@@ -7,8 +7,9 @@
 * {
     padding: 0;
     margin: 0;
-
-    font-family: "Jost", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    
+    /* "Jost", */
+    font-family:  system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
     user-select: none;
 }
@@ -476,6 +477,49 @@ html {
                     border: solid #000 1px;
 
                     transition: 0.1s background-color;
+
+                    &:hover {
+                        background-color: var(--seco);
+                        cursor: pointer;
+
+                    }
+
+                }
+
+            }
+
+            /* video.php */
+            &#video {
+                display: flex;
+                flex-direction: row;
+
+                .area {
+                    width: 100%;
+                    background-color: #0001;
+                    max-width: 50%;
+                    overflow-wrap: anywhere;
+
+                    .row {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+
+                    }
+
+                }
+
+                button {
+                            
+                    padding: 5px;
+                        
+                    outline-width: 0px;
+                    border-radius: 0;
+                    border: solid #000 1px;
+
+                    transition: 0.1s background-color;
+
+                    &:focus { border-color: var(--main); }
 
                     &:hover {
                         background-color: var(--seco);

@@ -13,6 +13,7 @@
             </a>
             <div style="flex-grow: 1;"></div>
         ';
+    // notification system
     // if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     //     echo '<div id="msgbox">0</div>';
     // }

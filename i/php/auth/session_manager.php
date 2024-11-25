@@ -48,7 +48,7 @@
 
     } else {
 
-        if (basename($_SERVER['PHP_SELF']) != "registro.php" && basename($_SERVER['PHP_SELF']) != "inicio.php") {
+        if (basename($_SERVER['PHP_SELF']) != "registro.php" && basename($_SERVER['PHP_SELF']) != "inicio.php" && basename($_SERVER['PHP_SELF']) != "video.php") {
             header("Location: registro.php");
             exit();
         }

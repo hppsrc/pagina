@@ -17,7 +17,7 @@
 
             $row = mysqli_fetch_assoc($result);
             
-            echo '<script>alert("Ya haz publicado un video anteriormente.");setTimeout(1000);window.location.reload();</script>';
+            echo '<script>alert("Ya has publicado un video anteriormente.");setTimeout(1000);window.location.reload();</script>';
 
             $_SESSION['header_to'] = "Location: video.php?id=".$row["videoID"];
 
