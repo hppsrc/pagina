@@ -1,10 +1,10 @@
-<!-- * Cross modal pop up <div></div> -->
 <?php
     echo '
         <div id="overlay">
             <div id="mdbox">
-                <h1>Modal box title</h1>
-                <p>Moda box text</p>
+                <h1 id="mdtlt">Text</h1>
+                <p id="mdtxt">Text</p>
+                <button id="mdbtn">Ok!</button>
             </div>
         </div>
     ';

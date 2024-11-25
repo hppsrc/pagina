@@ -1,4 +1,3 @@
-<!-- Cross meta data -->
 <?php
     echo '
         <link rel="preconnect" href="https://fonts.googleapis.com">

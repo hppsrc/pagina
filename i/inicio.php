@@ -1,3 +1,10 @@
+<?php
+
+    session_start();
+    include 'php/auth/connection.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +17,7 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 
-    <title>Document</title>
+    <title>Cargando...</title>
 
     <?php include 'php/page/meta.php'; ?>
 
@@ -18,10 +25,8 @@
 
 <body>
 
-    <!-- <php include 'php/page/modal.php'; ?> -->
-
+    <?php include 'php/page/modal.php'; ?>
     <?php include 'php/page/info.php'; ?>
-
     <?php include 'php/page/header.php'; ?>
 
     <main id="inicio">
@@ -107,7 +112,16 @@
 
     </main>
 
+    <br>
+
     <?php include 'php/page/footer.php'; ?>
+
 
 </body>
 </html>
+
+<?php
+
+    include 'php/auth/session_manager.php';
+    
+?>

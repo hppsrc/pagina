@@ -47,14 +47,19 @@ html {
             justify-content: center;
             align-items: center;
 
+            visibility: hidden;
+
             position: fixed;
-            /* visibility: hidden; */
             
             background-color: #0007;
 
             box-shadow: 5px 10px #888888;
 
             z-index: 98;
+
+            * {
+                padding: 1%;
+            }
 
             #mdbox {
                 width: 50%;
@@ -63,7 +68,7 @@ html {
                 display: flex;
                 flex-direction: column;
                 align-content: center;
-                justify-content: center;
+                justify-content: space-around;
                 align-items: center;
 
                 border-radius: 25px;
@@ -80,6 +85,7 @@ html {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            align-items: center;
 
             background-color: var(--main);
 
@@ -89,6 +95,14 @@ html {
 
                 #userrole { color: #003247; } 
 
+            }
+
+            #msgbox {
+                padding: 12px 15px ;
+
+                background-color: #ffa30f;
+
+                border-radius: 5px;
             }
 
             #divcol {
@@ -116,14 +130,15 @@ html {
             height: 0px;
             
             display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
+            flex-direction: column;
+            justify-content: center;
+            align-items: end;
             
             background-color: var(--seco);
 
             overflow: hidden;
 
-            transition: height 0.2s, padding 0.2s, font-size 0.2s;
+            transition: height 0.2s;
 
         }
 
@@ -261,61 +276,144 @@ html {
     
             }
 
+            /* registro.php */
             &#registro {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
 
-                div form *, div form &#sec2 * {
-                    margin-top: 5px !important;
+                form {
+                    width: 50%;
+
+                    display: flex;
+                    flex-direction: column;
+
+                    label, input {
+                        margin-top: 5px;
+                        padding-right: 0 1%;
+                        
+                        font-size: x-large;
+                        
+                        border-radius: 0;
+                        border: none;
+                        
+                        &::placeholder {
+                            font-style: italic;
+                            font-size: medium;
+
+                            opacity: 0.5;
+
+                        }
+
+                        &:not(label) {
+
+                            flex-basis: 50%;
+    
+                            border-bottom: solid #000 1px;
+                            
+                            outline-width: 0px;
+    
+                            &:focus { border-color: var(--main); }
+
+                        }
+
+                    }
+
+                    input[type="submit"] {
+                        width: 50%;
+                        
+                        border: solid #000 1px;
+
+                        transition: 0.1s background-color;
+
+                        &:hover {
+                            background-color: var(--seco);
+                            cursor: pointer;
+
+                        }
+
+                    }
+    
+                }
+                
+                button {
+                    width: 25%;
+                    
+                    margin-top: 5px;
+                        
+                    outline-width: 0px;
+                    border-radius: 0;
+                    border: solid #000 1px;
+
+                    transition: 0.1s background-color;
+
+                    &:focus { border-color: var(--main); }
+
+                    &:hover {
+                        background-color: var(--seco);
+                        cursor: pointer;
+
+                    }
+
                 }
 
-                div {
+            }
+
+            /* publicar.php */
+            &#publicar {
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .row {
+                    
                     display: flex;
                     flex-direction: row;
-    
-                    form {
-                        display: flex;
-                        flex-direction: column;
-                        width: 50%;
-    
-                        red {
-                            font-size: x-large;
-                            color: red;
+                    align-items: center;
+
+                    button {
+                        width: 10%;
+                        
+                        margin-left: 1%;
+                        
+                        font-size: large;
+                            
+                        outline-width: 0px;
+                        border-radius: 0;
+                        border: solid #000 1px;
+
+                        transition: 0.1s background-color;
+
+                        &:focus { border-color: var(--main); }
+
+                        &:hover {
+                            background-color: var(--seco);
+                            cursor: pointer;
+
                         }
-    
-                        div {
-                            display: flex;
-                            flex-direction: row;
-                            justify-content: space-between;
-    
-                            .row {
-                                padding-right: 0 1%;
-                                
-                                display: flex;
-                                flex-direction: row;
-                                align-items: center;
-        
-                                img {
-                                    padding-right: 0 1%;
-                                    
-                                    width: 18px;
-                                    height: 18px;
-        
-                                    &:hover { cursor: pointer; }
-                                }
-        
-                            }
-    
-                        }
-    
-                        label, input, button {
-    
+
+                    }
+
+                }
+
+                form {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+
+                    .row {
+                        justify-content: space-between;
+
+                        label, input, textarea {
+                            margin-top: 5px;
                             padding-right: 0 1%;
                             
-                            font-size: x-large;
+                            font-size: large;
                             
                             border-radius: 0;
+                            border: solid #000 1px;
+                            
                             border: none;
                             
                             &::placeholder {
@@ -326,11 +424,10 @@ html {
     
                             }
     
-                            &:not(label, button) {
-    
-                                flex-basis: 50%;
-        
-                                border-bottom: solid #000 1px;
+                            &:not(label) {
+                                flex-basis: 75%;
+                            
+                                border: solid #000 1px;
                                 
                                 outline-width: 0px;
         
@@ -338,33 +435,52 @@ html {
     
                             }
     
-                            &:not(label, input ) {
-                                border: solid #000 1px;
-    
-                                transition: 0.1s background-color;
-    
-                                &:hover {
-                                    background-color: var(--seco);
-                                    cursor: pointer;
-    
-                                }
-    
-                            }
-    
                         }
 
-                        &#sec2 {
-                            text-align: center;
-                            justify-content: center;
+                        textarea {
+                            font-size: medium;
                             
-                            *{
-                                padding-left: 5px;
-                                width: 50%;
-                                margin: 0 25%;
-                            }
+                            resize: vertical;
+                        }
+
+                    }
+    
+                    input {
+                        font-size: x-large;
+
+                        width: 25%;
+                        
+                        border: solid #000 1px;
+
+                        transition: 0.1s background-color;
+
+                    }
+
+                    input[type="submit"] {
+
+                        &:hover {
+                            background-color: var(--seco);
+                            cursor: pointer;
 
                         }
-        
+
+                    }
+    
+                }
+
+                button {
+                    font-size: x-large;
+
+                    width: 25%;
+                    
+                    border: solid #000 1px;
+
+                    transition: 0.1s background-color;
+
+                    &:hover {
+                        background-color: var(--seco);
+                        cursor: pointer;
+
                     }
 
                 }

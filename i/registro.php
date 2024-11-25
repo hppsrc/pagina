@@ -1,3 +1,11 @@
+<?php
+
+    session_start();
+    include 'php/auth/connection.php';
+    require 'php/auth/session_manager.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,77 +18,46 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 
-    <title>Document</title>
+    <title>Cargando...</title>
 
     <?php include 'php/page/meta.php'; ?>
 
 </head>
 
 <body>
-
-    <!-- <php include 'php/page/modal.php'; ?> -->
-
+    <?php include 'php/page/modal.php'; ?>
     <?php include 'php/page/info.php'; ?>
-
     <?php include 'php/page/header.php'; ?>
 
     <main id="registro">
 
         <h1>Registrate o accede a la plataforma</h1>
 
-        <div>
+        <form method="POST">
+            
+            <label for="student_id"> Codigo carnet estudiantil </label>
+            <input type="number" id="student_id" name="student_id" required>
 
-            <form>
-                
-                <div>
-                    <label> Codigo carnet estudiantil <red>*</red> </label>
-                    <input type="number" id="carnet">
-                </div>
+            <label for="mail"> Correo institucional  </label>
+            <input type="email" id="mail" name="mail" required>
 
-                <div>
-                    <label> Correo institucional <red>*</red> </label>
-                    <input type="email" id="carnet">
-                </div>
+            <label for="password" > Contraseña </label>
+            <input style="display: block;" type="password" id="password" name="password" minlength="8" required>
 
-                <div>
+            <p style="color: red;">Si no estas registrado, el valor que ingreses será tu contraseña. Minimo 8 caracteres.</p>
+            <p style="color: darkcyan;">Para registrate, rellena la información y presiona en Acceder.</p>
 
-                    <div class="row">
-                        <label> Contraseña </label>
-                        <red>*</red>
-                        <img src="res/icons/help-circle.svg" onmousemove="showInfo(3)" onmouseleave="showInfo(-1)">
-                    </div>
+            <input  type="submit" name="submit" value="Acceder">
 
-                    <input type="password" id="carnet">
-
-                </div>
-
-            </form>
-
-            <form id="sec2" action="">
-
-                <button>Verificar información</button>
-                <button>Registrarme</button>
-                
-                <label for="">¿Ya estás registrado?</label>
-                <button>Inicia sesión</button>
-
-            </form>
-
-        </div>
-
-        <p style="color: darkcyan;">Para registrate, rellena la información y presiona en verificar.</p>
-        <p style="color: red;"> * Obligatorio </p>
+        </form>
 
         <br>
 
-        <a href=""> No recuerdo mi contraseña </a>
-        <a href=""> Mi informacion es correcta y no puedo registrarme </a>
-        <a href=""> Alguien se registro con mis datos </a>
-        <a href=""> Tengo otro problema </a>
-        
-        <br><br><br>
-        
-        
+        <hr>
+
+        <br>
+
+        <button id="continueModal">Información importante de registro</button>
 
     </main>
 
@@ -88,3 +65,84 @@
 
 </body>
 </html>
+
+<?php
+
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $student_id = filter_input(INPUT_POST,"student_id", FILTER_SANITIZE_SPECIAL_CHARS);
+        $mail = filter_input(INPUT_POST,"mail", FILTER_SANITIZE_SPECIAL_CHARS);
+        $password = filter_input(INPUT_POST,"password", FILTER_SANITIZE_SPECIAL_CHARS);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) { 
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; 
+        } else if (!empty($_SERVER['REMOTE_ADDR'])) { 
+            $ip = $_SERVER['REMOTE_ADDR']; 
+        }
+        
+        $ip = trim(filter_var($ip, FILTER_VALIDATE_IP));
+        $hashed_ip = hash('sha256', $ip . 'randomtext');
+
+        if (isset($_POST['submit'])) {
+            
+            if( isset($student_id) && isset($mail) && isset($password) ) {
+
+                $sql = "SELECT * FROM users WHERE student_id = '$student_id' AND mail = '$mail'";
+                $result = mysqli_query($conn, $sql);
+
+                if ( mysqli_num_rows($result) > 0 ) {
+
+                    $row = mysqli_fetch_assoc($result);
+                    
+                    if ( $row["verification_status"] == 0 ) { // user isn't verified
+                        $sql = "UPDATE users SET password = '$hashed_password', verification_status = 1, ip = '$hashed_ip' WHERE student_id = '$student_id' AND mail = '$mail'";
+                        mysqli_query($conn, $sql);
+    
+                        echo '<script>alert("Bienvenido, '.strtoupper($row["name"]).'.\nTu cuenta fue activada y ya puedes iniciar sesión.")</script>';
+
+                    } else if ( $row["password"] != null ) { // user has a pass now
+
+                        if ( password_verify($password, $row["password"]) ) { // password work
+                            
+                            if ( $hashed_ip !== $row["ip"] ) { // user ip isn't the same
+                                
+                                echo '<script>alert("Estás intentando acceder de un dispositivo no reconocido. Acceso denegado.")</script>';
+            
+                            } else if ( $row["banned"] == 1 ) { // was banned
+            
+                                echo '<script>alert("La cuenta fue inhabilitada por tener muchos reportes.")</script>';
+        
+                            } else if ( $row["verification_status"] == 1 ) { // log in now
+
+                                $_SESSION['login_id'] = $row['ID'];
+                                $_SESSION['logged_in'] = true;
+
+                                header("Location: inicio.php");
+                                exit();
+        
+                            }
+
+                        } else { // wrong password
+
+                            echo '<script>alert("Contraseña incorrecta.")</script>';
+
+                        }
+
+                    }
+
+                } else { // user hasn't found
+
+                    echo '<script>alert("No se encontro un usuario.\nSi esto es un error comuniquese con la profesora.")</script>';
+                    
+                }
+
+            }
+
+        }
+
+    }
+
+    include 'php/auth/session_manager.php';
+
+?>
