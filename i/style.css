@@ -494,22 +494,47 @@ html {
                 flex-direction: row;
 
                 .area {
-                    width: 100%;
-                    background-color: #0001;
+
                     max-width: 50%;
+                    width: 100%;
+                    
+                    background-color: #0001;
+
                     overflow-wrap: anywhere;
 
                     .row {
+
                         display: flex;
                         flex-direction: row;
                         justify-content: space-between;
-                        align-items: center;
+
+                        textarea {
+                            margin: 0 5px;
+                            
+                            flex-grow: 5;
+                            
+                            font-size: medium;
+                            
+                            resize: vertical;
+
+                            border: solid #000 1px;
+    
+                            &:focus { border-color: var(--main); }
+
+                        }
+
+                    }
+
+                    #videoComments {
+                        margin: 0 5%;
+
+                        .commentText { margin: 0 5%; }
 
                     }
 
                 }
 
-                button {
+                button, label {
                             
                     padding: 5px;
                         

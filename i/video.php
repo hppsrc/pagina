@@ -64,11 +64,15 @@
 
         ?>
 
-        <div class="area" style="max-width: 60%;">
+        <div class="area" style="max-width: 70%;">
 
             <!-- <iframe width="100%" height="415" src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?&autoplay=1" title="YouTube video player" frameborder="0" allow="" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
 
-            <h1 id="videoTitle">...</h1>
+            
+            <div class="row">
+                <h1 id="videoTitle">...</h1>
+                <h1 id="videoScore">⭐ 0,00</>
+            </div>
             <p id="videoAuthor">Hecho por ...</p>
             
             <div class="row">
@@ -97,14 +101,27 @@
             <br><hr><br>
 
             <h3>Comentarios</h3>
-            <small><p>La plataforma solo muestra los ultimos 25 comentarios</p></small>
+            <small><p>Solo se muestran los ultimos 25 comentarios.</p></small>
             <!-- textarea here + comment button-->
 
-            
+            <form class="row" style="align-items: flex-start;">
+                <p>Escribe tu comentario aquí:</p>
+                <textarea name="videoCommetArea" id="videoCommetArea" rows="5" maxlength="500"></textarea>
+                <input id="reportVideo" type="submit" value="Comentar en este video">
+            </form>
+
+            <br><hr>
+
+            <div id="videoComments">
+                <!-- <div class="comment">
+                    <h3>Horacio dijo... <small><small>El 23/11 a las 4:00 PM</small></small></h3>
+                    <p class="commentText">Soy un comentario</p>
+                </div> -->
+            </div>
             
         </div>
 
-        <div class="area" style="max-width: 40%;">
+        <div class="area" style="max-width: 30%;">
 
             area
 
@@ -127,7 +144,8 @@
 <?php
 
     require 'php/auth/session_manager.php';
-    require 'php/auth/video_manager.php'
+    require 'php/auth/video_manager.php';
+    require 'php/auth/comments_manager.php';
     
 ?>
 

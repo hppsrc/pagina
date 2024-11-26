@@ -3,13 +3,14 @@
     session_start();
     include 'php/auth/connection.php';
 
-    if(isset($_SESSION['header_to'])){
-        
-        header($_SESSION['header_to']);
-        exit();
+    if( isset( $_SESSION['header_to'] )) {
 
-    } else {
-        
+        header($_SESSION['header_to']);
+
+    }
+
+    if ( isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true ) {
+    
         $sql = "SELECT * FROM video WHERE user_id = '$_SESSION[login_id]'";
         $result = mysqli_query($conn, $sql);
 
@@ -21,7 +22,12 @@
 
             $_SESSION['header_to'] = "Location: video.php?id=".$row["videoID"];
 
-        } 
+        }
+
+    } else {
+
+        header("Location: registro.php");
+
     }
 
 ?>

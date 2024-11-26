@@ -1,10 +1,12 @@
 <?php
 
+    // todo if user_id is banned send alert and go to inicio.php
+
+    // todo if user is teacher update feature
+
     // add view
     $sqlView = "UPDATE video SET views = views + 1 WHERE videoID =  '$_GET[id]'";
     mysqli_query($conn, $sqlView);
-
-    // todo manage if is teacher update feature
 
     // get video info
     $sqlVideoMan = "SELECT * FROM video WHERE videoID = '$_GET[id]'";
@@ -18,9 +20,16 @@
 
         $rowVideoMan = mysqli_fetch_assoc($resultVideoMan);
         $rowDate = mysqli_fetch_assoc($resultDATE);
+
+        // get video user info
+        $sqlVideoUser = "SELECT * FROM users WHERE ID = '$rowVideoMan[user_id]'";
+        $resultVideoUser = mysqli_query($conn, $sqlVideoUser);
+        $rowUser = mysqli_fetch_assoc($resultVideoUser);
         
         echo '<script>document.getElementById("videoTitle").innerHTML ="'.$rowVideoMan["title"].'"</script>';
-        echo '<script>document.getElementById("videoAuthor").innerHTML =" Hecho por <b>'.$row["name"].'</b>"</script>';
+        echo '<script>document.title ="'.$rowVideoMan["title"].' - CulturaTech "</script>';
+
+        echo '<script>document.getElementById("videoAuthor").innerHTML =" Hecho por <b>'.$rowUser["name"].'</b>"</script>';
         echo '<script>document.getElementById("videoDate").innerHTML ="'.$rowDate["datePost"].'"</script>';
         echo '<script>document.getElementById("videoViews").innerHTML ="'.$rowVideoMan["views"].' vistas"</script>';
 

@@ -2,8 +2,6 @@
 
     if ( isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true ) {
 
-        $_SESSION['reload'] = 1;
-
         // get user info
         $sql = "SELECT * FROM users WHERE id = '$_SESSION[login_id]'";
         $result = mysqli_query($conn, $sql);
@@ -49,16 +47,13 @@
     } else {
 
         if (basename($_SERVER['PHP_SELF']) != "registro.php" && basename($_SERVER['PHP_SELF']) != "inicio.php" && basename($_SERVER['PHP_SELF']) != "video.php") {
+            
             header("Location: registro.php");
+
             exit();
+            
         }
         
-    }
-
-    if ( isset($_SESSION['reload']) && $_SESSION['reload'] == 1 ) {
-
-        $_SESSION['reload'] = 0;
-
     }
 
 ?>
